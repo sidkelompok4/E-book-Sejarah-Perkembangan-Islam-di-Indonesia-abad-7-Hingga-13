@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sejarah Islam Indonesia - Intro</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+  background: #000;
+}
+
+/* ================= INTRO SCREEN ================= */
+.intro-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #2c1810 0%, #5A3E2B 50%, #3d2a1f 100%);
+  background-size: 200% 200%;
+  animation: gradientFlow 10s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+@keyframes gradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ================= FADE OUT TRANSITION ================= */
+.fade-to-page {
+  animation: fadeToBlack 1.2s ease forwards;
+}
+
+@keyframes fadeToBlack {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+    visibility: hidden;
+  }
+}
+
+/* ================= CONTENT WRAPPER ================= */
+.content-wrapper {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= ANIMATED LOGO ================= */
+.logo-wrapper {
+  margin-bottom: 40px;
+  animation: logoFadeIn 1.5s ease forwards;
+}
+
+.main-logo {
+  font-size: 120px;
+  display: inline-block;
+  animation: logoPulse 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(190, 120, 27, 0.7));
+}
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 30px rgba(190, 120, 27, 0.7));
+  }
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 50px rgba(190, 120, 27, 1));
+  }
+}
+
+/* ================= TEXT ANIMATIONS ================= */
+.title-main {
+  font-size: 52px;
+  font-weight: bold;
+  color: #DECBAA;
+  margin-bottom: 15px;
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.7);
+  animation: titleSlideIn 1s ease 0.3s forwards;
+  opacity: 0;
+  background: linear-gradient(135deg, #DECBAA, #F5EEDD, #DECBAA);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleSlideIn 1s ease 0.3s forwards, shimmer 3s ease infinite;
+}
+
+@keyframes titleSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
+.title-sub {
+  font-size: 24px;
+  color: #F5EEDD;
+  margin-bottom: 20px;
+  animation: subtitleSlideIn 1s ease 0.6s forwards;
+  opacity: 0;
+  letter-spacing: 2px;
+}
+
+@keyframes subtitleSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.description {
+  font-size: 16px;
+  color: rgba(222, 203, 170, 0.9);
+  max-width: 650px;
+  margin: 0 auto 50px;
+  line-height: 1.8;
+  animation: descFadeIn 1s ease 0.9s forwards;
+  opacity: 0;
+  padding: 0 20px;
+}
+
+@keyframes descFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= LOADING INDICATOR ================= */
+.loading-section {
+  margin-top: 60px;
+  animation: loadingFadeIn 0.8s ease 1.5s forwards;
+  opacity: 0;
+}
+
+.loading-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.dot {
+  width: 15px;
+  height: 15px;
+  background: #be781b;
+  border-radius: 50%;
+  animation: dotBounce 1.4s ease-in-out infinite;
+  box-shadow: 0 0 15px rgba(190, 120, 27, 0.6);
+}
+
+.dot:nth-child(1) { animation-delay: 0s; }
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dotBounce {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes loadingFadeIn {
+  to { opacity: 1; }
+}
+
+.loading-text {
+  color: #F5EEDD;
+  font-size: 15px;
+  letter-spacing: 1px;
+  animation: textPulse 2s ease-in-out infinite;
+}
+
+@keyframes textPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ================= PROGRESS BAR ================= */
+.progress-container {
+  width: 350px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  margin: 30px auto 20px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #be781b, #DECBAA, #be781b);
+  background-size: 200% 100%;
+  border-radius: 10px;
+  animation: progressFill 4s ease forwards, progressGlow 2s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(190, 120, 27, 0.8);
+}
+
+@keyframes progressFill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes progressGlow {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
+.progress-percent {
+  color: #DECBAA;
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* ================= SKIP BUTTON ================= */
+.skip-button {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  padding: 12px 28px;
+  background: rgba(190, 120, 27, 0.2);
+  color: #DECBAA;
+  border: 2px solid #DECBAA;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: skipFadeIn 0.5s ease 2.5s forwards;
+  opacity: 0;
+  backdrop-filter: blur(10px);
+}
+
+@keyframes skipFadeIn {
+  to { opacity: 1; }
+}
+
+.skip-button:hover {
+  background: #be781b;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(190, 120, 27, 0.5);
+}
+
+.skip-button:active {
+  transform: translateY(-1px);
+}
+
+/* ================= DECORATIVE ELEMENTS ================= */
+.decoration {
+  position: absolute;
+  color: rgba(222, 203, 170, 0.1);
+  font-size: 60px;
+  animation: floatDecor 10s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes floatDecor {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translate(30px, -30px) rotate(180deg);
+    opacity: 0.25;
+  }
+}
+
+.decoration:nth-child(1) { top: 15%; left: 8%; animation-delay: 0s; }
+.decoration:nth-child(2) { top: 25%; right: 10%; animation-delay: 1.5s; }
+.decoration:nth-child(3) { bottom: 20%; left: 15%; animation-delay: 3s; }
+.decoration:nth-child(4) { bottom: 15%; right: 12%; animation-delay: 2s; }
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .main-logo { font-size: 80px; }
+  .title-main { font-size: 34px; letter-spacing: 2px; }
+  .title-sub { font-size: 18px; }
+  .description { font-size: 14px; padding: 0 30px; }
+  .progress-container { width: 280px; }
+  .skip-button {
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+  .decoration { font-size: 40px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= INTRO SCREEN ================= -->
+<div class="intro-screen" id="introScreen">
+  
+  <!-- Decorative Elements -->
+  <div class="decoration">☪</div>
+  <div class="decoration">✦</div>
+  <div class="decoration">☪</div>
+  <div class="decoration">✦</div>
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    
+    <!-- Logo -->
+    <div class="logo-wrapper">
+      <div class="main-logo">📜</div>
+    </div>
+
+    <!-- Titles -->
+    <h1 class="title-main">SEJARAH ISLAM</h1>
+    <h2 class="title-sub">di Indonesia Abad 7 - 13 Masehi</h2>
+    <p class="description">
+      Menelusuri jejak peradaban Islam di Nusantara, 
+      dari perdagangan maritim hingga lahirnya kerajaan-kerajaan Islam pertama. 
+      Saksikan perjalanan berabad-abad yang membentuk sejarah bangsa.
+    </p>
+
+    <!-- Loading Section -->
+    <div class="loading-section">
+      <div class="loading-dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <p class="loading-text">Memuat konten sejarah...</p>
+      
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+      <p class="progress-percent" id="progressPercent">0%</p>
+    </div>
+
+  </div>
+
+  <!-- Skip Button -->
+  <button class="skip-button" onclick="fadeToPage()">
+    Lewati Intro →
+  </button>
+
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+  // Progress counter
+  let progress = 0;
+  const progressPercent = document.getElementById('progressPercent');
+  
+  const progressInterval = setInterval(() => {
+    if (progress < 100) {
+      progress += 2;
+      progressPercent.textContent = progress + '%';
+    } else {
+      clearInterval(progressInterval);
+    }
+  }, 80);
+
+  // Auto fade to page after 5 seconds
+  const autoFade = setTimeout(() => {
+    fadeToPage();
+  }, 5000);
+
+  // Fade transition function
+  function fadeToPage() {
+    clearTimeout(autoFade);
+    clearInterval(progressInterval);
+    
+    const introScreen = document.getElementById('introScreen');
+    introScreen.classList.add('fade-to-page');
+    
+    // Redirect after fade animation completes
+    setTimeout(() => {
+      window.location.href = 'sidkel4.html';
+    }, 1200);
+  };
+
+  
+</script>
+
+</body>
+</html>
