@@ -155,7 +155,7 @@ h2, h3, h4 {
     border-radius: 14px;
     box-shadow: 0 8px 18px rgba(0,0,0,.08);
     cursor: pointer;
-    transition: .3s;
+    transition: .0s;
 }
 
 .era-card:hover {
@@ -276,4 +276,5 @@ h2, h3, h4 {
 /* ================= HIGHLIGHT ================= */
 mark {
     background: yellow;
+
 }
