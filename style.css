@@ -155,7 +155,11 @@ h2, h3, h4 {
     border-radius: 14px;
     box-shadow: 0 8px 18px rgba(0,0,0,.08);
     cursor: pointer;
-    transition: .0s;
+    transition: 0.3s ease;
+
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select:none;
 }
 
 .era-card:hover {
@@ -278,3 +282,4 @@ mark {
     background: yellow;
 
 }
+
