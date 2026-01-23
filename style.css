@@ -23,7 +23,7 @@ h2, h3, h4 {
     color: white;
     position: static;
     top: 0;
-    z-sidkel4: 1000;
+    z-index: 1000;
 }
 
 /* AKTIF SAAT STICKY */
@@ -283,5 +283,6 @@ mark {
     background: yellow;
 
 }
+
 
 
