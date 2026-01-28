@@ -21,6 +21,16 @@
 
     <div class="content content-page">
         <div class="card" style="display: block;">
+
+            <!-- ====== VOICE CONTROL ====== -->
+        <div class="voice-control">
+            <button onclick="startReading()">🔊 Dengarkan</button>
+            <button onclick="pauseReading()">⏸️ Pause</button>
+            <button onclick="stopReading()">⏹️ Stop</button>
+        </div>
+
+        <!-- ====== KONTEN YANG DIBACA ====== -->
+        <div id="contentAbad">
             <h2>Abad 7</h2>
             <b>Teori-teori hadirnya Islam di Indonesia.</b>
             <p class="justify">Perkembangan Islam di wilayah Indonesia tidak lepas dari permulaan Islam di Indonesia. Dalam beberapa buku, dijelaskan bahwasanya hadirnya Islam di Indonesia, tetapi dahulu disebut Nusantara, terdapat beberapa teori.</p>
@@ -58,6 +68,7 @@
             <p class="justify">Setelah Islam berkembang, para pedagang Arab Muslim tetap melakukan aktivitas perdagangan sambil menyebarkan ajaran Islam. Wilayah pesisir seperti Aceh, pantai barat Sumatra, pesisir utara Jawa, Kalimantan, dan Sulawesi menjadi daerah pertama yang menerima pengaruh Islam karena merupakan pusat perdagangan internasional.</p>
 
             <p class="justify"><b>KEDUA:</b> Teori Arab didukung oleh berbagai bukti sejarah dan budaya. Catatan Cina dari masa Dinasti Tang menyebutkan adanya permukiman pedagang Arab Muslim di wilayah Sumatra pada abad ke-7, yang menunjukkan bahwa Islam telah dikenal lebih awal di Nusantara. Selain itu, mayoritas umat Islam di Indonesia menganut Mazhab Syafi'i, yang berkembang di Mekkah dan Madinah, sehingga memperkuat dugaan bahwa Islam masuk langsung dari Arab.</p>
+           </div>
         </div>
     </div>
 
@@ -67,6 +78,41 @@
     </div>
 
     <script src="main.js"></script>
+<!-- ====== SCRIPT VOICE READER ====== -->
+<script>
+let speech;
+let isPaused = false;
+
+function startReading() {
+    stopReading();
+    const text = document.getElementById("contentAbad").innerText;
+
+    speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "id-ID";
+    speech.rate = 0.95;
+    speech.pitch = 1;
+
+    window.speechSynthesis.speak(speech);
+}
+
+function pauseReading() {
+    if (!window.speechSynthesis.speaking) return;
+
+    if (isPaused) {
+        window.speechSynthesis.resume();
+        isPaused = false;
+    } else {
+        window.speechSynthesis.pause();
+        isPaused = true;
+    }
+}
+
+function stopReading() {
+    window.speechSynthesis.cancel();
+    isPaused = false;
+}
+</script>
 </body>
 
 </html>
+
