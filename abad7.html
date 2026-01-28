@@ -75,6 +75,9 @@
         <button class="bottom-nav-btn" onclick="location.href='sidkel4.html'">🏠 Kembali ke Beranda</button>
         <button class="bottom-nav-btn" onclick="scrollToTop()">⬆ Ke Atas</button>
     </div>
+<button onclick="playVoice()" class="voice-btn">
+🔊 Dengarkan Ringkasan
+</button>
 
     <script src="main.js"></script>
 
@@ -110,9 +113,20 @@ function stopReading() {
     window.speechSynthesis.cancel();
     isPaused = false;
 }
+function playVoice() {
+    const text = document.body.innerText.slice(0, 800); 
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "id-ID";
+    utterance.rate = 0.95;
+
+    speechSynthesis.cancel(); 
+    speechSynthesis.speak(utterance);
+}
 </script>
 </body>
 
 </html>
+
 
 
