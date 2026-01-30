@@ -21,6 +21,17 @@
 
     <div class="content content-page">
         <div class="card" style="display: block;">
+     <div class="content content-page">
+        <div class="card" style="display: block;">
+
+        <div class="voice-control">
+            <button onclick="startReading()">🔊 Dengarkan</button>
+            <button onclick="pauseReading()">⏸️ Pause</button>
+            <button onclick="stopReading()">⏹️ Stop</button>
+        </div>
+
+        
+        <div id="contentAbad">
             <h2>Abad 12</h2>
         <h3>Perkembangan Islam di Indonesia pada Abad ke-12 Masehi – Fase Perintisan dan Penguatan Komunitas Muslim</h3>
 <p class="justify">
@@ -56,7 +67,7 @@ Meskipun bukti arkeologis dari abad ke-12 tidak sebanyak abad berikutnya, bebera
 <p class="justify">
 Abad ke-12 Masehi merupakan periode transisi yang sangat penting dalam sejarah Islam di Indonesia, menandai fase perintisan di mana Islam mulai mengakar dalam struktur sosial masyarakat Nusantara. Melalui jalur perdagangan maritim yang intensif, pedagang Muslim memperkenalkan Islam secara damai dan bertahap, membangun komunitas-komunitas Muslim permanen di pelabuhan-pelabuhan strategis. Pendekatan adaptif yang menghormati budaya lokal dan penekanan pada ajaran tasawuf memudahkan penerimaan Islam oleh masyarakat yang masih didominasi oleh tradisi Hindu-Buddha. Meskipun belum ada kekuasaan politik Islam yang signifikan, fondasi sosial, ekonomi, dan budaya yang dibangun pada abad ke-12 menjadi prasyarat penting bagi kemunculan kerajaan-kerajaan Islam dan Islamisasi massal yang terjadi di abad-abad berikutnya.
 </p>
-
+        </div>
      </div>
     </div>
 
@@ -64,7 +75,53 @@ Abad ke-12 Masehi merupakan periode transisi yang sangat penting dalam sejarah I
         <button class="bottom-nav-btn" onclick="location.href='sidkel4.html'">🏠 Kembali ke Beranda</button>
         <button class="bottom-nav-btn" onclick="scrollToTop()">⬆ Ke Atas</button>
     </div>
-
+<button onclick="playVoice()" class="voice-btn">
+🔊 Dengarkan Ringkasan
+</button>
     <script src="main.js"></script>
+<script>
+let speech;
+let isPaused = false;
+
+function startReading() {
+    stopReading();
+    const text = document.getElementById("contentAbad").innerText;
+
+    speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "id-ID";
+    speech.rate = 0.95;
+    speech.pitch = 1;
+
+    window.speechSynthesis.speak(speech);
+}
+
+function pauseReading() {
+    if (!window.speechSynthesis.speaking) return;
+
+    if (isPaused) {
+        window.speechSynthesis.resume();
+        isPaused = false;
+    } else {
+        window.speechSynthesis.pause();
+        isPaused = true;
+    }
+}
+
+function stopReading() {
+    window.speechSynthesis.cancel();
+    isPaused = false;
+}
+function playVoice() {
+    const text = document.body.innerText.slice(0, 800); 
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "id-ID";
+    utterance.rate = 0.95;
+
+    speechSynthesis.cancel(); 
+    speechSynthesis.speak(utterance);
+}
+</script>
 </body>
+
 </html>
