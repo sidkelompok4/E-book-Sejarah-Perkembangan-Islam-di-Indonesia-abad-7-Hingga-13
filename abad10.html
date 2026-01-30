@@ -18,7 +18,17 @@
             </div>
         </div>
     </header>
+ <div class="content content-page">
+        <div class="card" style="display: block;">
 
+        <div class="voice-control">
+            <button onclick="startReading()">🔊 Dengarkan</button>
+            <button onclick="pauseReading()">⏸️ Pause</button>
+            <button onclick="stopReading()">⏹️ Stop</button>
+        </div>
+
+        
+        <div id="contentAbad">
     <div class="content content-page">
         <div class="card" style="display: block;">
             <h2>Abad 10</h2>
@@ -64,7 +74,7 @@ Masyarakat Nusantara pada abad ke-10 masih didominasi oleh kepercayaan Hindu-Bud
 <p class="justify">
 Abad ke-10 Masehi merupakan periode embrio bagi perkembangan Islam di Nusantara. Pada masa ini, Islam mulai dikenal di kawasan pesisir Nusantara, khususnya di pelabuhan-pelabuhan perdagangan yang ramai. Meskipun belum ada kerajaan Islam yang berdiri atau konversi massal penduduk lokal, fondasi komunitas Muslim sudah mulai terbentuk melalui keberadaan pedagang Muslim yang menetap dan menjalin hubungan dengan masyarakat lokal. Hubungan ekonomi dan sosial yang terjalin antara Nusantara dengan dunia Islam melalui jalur perdagangan maritim menjadi medium utama dalam pengenalan nilai-nilai dan ajaran Islam. Proses Islamisasi yang berlangsung secara damai dan akulturatif pada abad ke-10 ini meletakkan dasar bagi perkembangan Islam yang lebih masif di abad-abad berikutnya, khususnya mulai abad ke-13 ketika kerajaan-kerajaan Islam pertama mulai muncul di Nusantara.
 </p>
-
+        </div>
         </div>
     </div>
 
@@ -72,8 +82,55 @@ Abad ke-10 Masehi merupakan periode embrio bagi perkembangan Islam di Nusantara.
         <button class="bottom-nav-btn" onclick="location.href='sidkel4.html'">🏠 Kembali ke Beranda</button>
         <button class="bottom-nav-btn" onclick="scrollToTop()">⬆ Ke Atas</button>
     </div>
+    <button onclick="playVoice()" class="voice-btn">
+🔊 Dengarkan Ringkasan
+</button>
 
     <script src="main.js"></script>
+<script>
+let speech;
+let isPaused = false;
+
+function startReading() {
+    stopReading();
+    const text = document.getElementById("contentAbad").innerText;
+
+    speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "id-ID";
+    speech.rate = 0.95;
+    speech.pitch = 1;
+
+    window.speechSynthesis.speak(speech);
+}
+
+function pauseReading() {
+    if (!window.speechSynthesis.speaking) return;
+
+    if (isPaused) {
+        window.speechSynthesis.resume();
+        isPaused = false;
+    } else {
+        window.speechSynthesis.pause();
+        isPaused = true;
+    }
+}
+
+function stopReading() {
+    window.speechSynthesis.cancel();
+    isPaused = false;
+}
+function playVoice() {
+    const text = document.body.innerText.slice(0, 800); 
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "id-ID";
+    utterance.rate = 0.95;
+
+    speechSynthesis.cancel(); 
+    speechSynthesis.speak(utterance);
+}
+</script>
 </body>
 
 </html>
+
