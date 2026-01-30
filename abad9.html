@@ -18,7 +18,17 @@
             </div>
         </div>
     </header>
+ <div class="content content-page">
+        <div class="card" style="display: block;">
 
+        <div class="voice-control">
+            <button onclick="startReading()">🔊 Dengarkan</button>
+            <button onclick="pauseReading()">⏸️ Pause</button>
+            <button onclick="stopReading()">⏹️ Stop</button>
+        </div>
+
+        
+        <div id="contentAbad">
     <div class="content content-page">
         <div class="card" style="display: block;">
             <h2>Abad 9</h2>
@@ -90,14 +100,62 @@
           Islam juga belum menjadi kekuatan politik dan akhirnya Belum ada kerajaan Islam lokal.</p>
      </div>
     </div>
+        </div>
 
     <div class="bottom-nav" id="bottomNav">
         <button class="bottom-nav-btn" onclick="location.href='sidkel4.html'">🏠 Kembali ke Beranda</button>
         <button class="bottom-nav-btn" onclick="scrollToTop()">⬆ Ke Atas</button>
     </div>
+        <button onclick="playVoice()" class="voice-btn">
+🔊 Dengarkan Ringkasan
+</button>
 
     <script src="main.js"></script>
+<script>
+let speech;
+let isPaused = false;
+
+function startReading() {
+    stopReading();
+    const text = document.getElementById("contentAbad").innerText;
+
+    speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "id-ID";
+    speech.rate = 0.95;
+    speech.pitch = 1;
+
+    window.speechSynthesis.speak(speech);
+}
+
+function pauseReading() {
+    if (!window.speechSynthesis.speaking) return;
+
+    if (isPaused) {
+        window.speechSynthesis.resume();
+        isPaused = false;
+    } else {
+        window.speechSynthesis.pause();
+        isPaused = true;
+    }
+}
+
+function stopReading() {
+    window.speechSynthesis.cancel();
+    isPaused = false;
+}
+function playVoice() {
+    const text = document.body.innerText.slice(0, 800); 
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "id-ID";
+    utterance.rate = 0.95;
+
+    speechSynthesis.cancel(); 
+    speechSynthesis.speak(utterance);
+}
+</script>
 </body>
 
 </html>
+
 
