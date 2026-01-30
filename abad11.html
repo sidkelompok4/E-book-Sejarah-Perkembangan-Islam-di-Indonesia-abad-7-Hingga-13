@@ -21,6 +21,17 @@
 
     <div class="content content-page">
         <div class="card" style="display: block;">
+     <div class="content content-page">
+        <div class="card" style="display: block;">
+
+        <div class="voice-control">
+            <button onclick="startReading()">🔊 Dengarkan</button>
+            <button onclick="pauseReading()">⏸️ Pause</button>
+            <button onclick="stopReading()">⏹️ Stop</button>
+        </div>
+
+        
+        <div id="contentAbad">
             <h2>Abad 11</h2>
             <h3>Perkembangan Islam di Indonesia pada Abad ke-11 Masehi</h3>
 
@@ -74,7 +85,7 @@ Perkembangan Islam pada abad ke-11 menjadi fondasi krusial bagi proses Islamisas
 <p class="justify">
 Abad ke-11 Masehi merupakan masa transisi dan penguatan yang sangat penting dalam sejarah perkembangan Islam di Nusantara. Di tingkat global, dunia Islam mengalami transformasi politik dengan melemahnya Dinasti Abbasiyah dan bangkitnya Dinasti Seljuk, namun tetap mengalami kejayaan dalam bidang ilmu pengetahuan dan kebudayaan yang menjadikannya pusat peradaban dunia. Di Nusantara, abad ke-11 menandai fase di mana Islam mulai mengakar secara sosial dan kultural, terutama melalui intensifikasi perdagangan internasional dan interaksi damai antara pedagang Muslim dengan masyarakat lokal. Bukti arkeologis seperti batu nisan Fatimah binti Maimun (1082 M) menunjukkan bahwa komunitas Muslim telah menetap secara permanen dan mengembangkan tradisi keagamaan di wilayah Nusantara. Metode penyebaran yang multidimensional melalui perdagangan, pernikahan, adaptasi budaya, dan tasawuf menciptakan penerimaan yang luas dan mendalam terhadap Islam. Perkembangan pada abad ke-11 ini menjadi dasar kuat bagi gelombang Islamisasi besar-besaran yang terjadi pada abad-abad berikutnya, membuktikan bahwa proses Islamisasi Nusantara adalah perjalanan panjang yang dimulai jauh sebelum munculnya kerajaan-kerajaan Islam besar.
 </p>
-
+        </div>
      </div>
     </div>
 
@@ -82,8 +93,54 @@ Abad ke-11 Masehi merupakan masa transisi dan penguatan yang sangat penting dala
         <button class="bottom-nav-btn" onclick="location.href='sidkel4.html'">🏠 Kembali ke Beranda</button>
         <button class="bottom-nav-btn" onclick="scrollToTop()">⬆ Ke Atas</button>
     </div>
-
+<button onclick="playVoice()" class="voice-btn">
+🔊 Dengarkan Ringkasan
+</button>
     <script src="main.js"></script>
+    <script>
+let speech;
+let isPaused = false;
+
+function startReading() {
+    stopReading();
+    const text = document.getElementById("contentAbad").innerText;
+
+    speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "id-ID";
+    speech.rate = 0.95;
+    speech.pitch = 1;
+
+    window.speechSynthesis.speak(speech);
+}
+
+function pauseReading() {
+    if (!window.speechSynthesis.speaking) return;
+
+    if (isPaused) {
+        window.speechSynthesis.resume();
+        isPaused = false;
+    } else {
+        window.speechSynthesis.pause();
+        isPaused = true;
+    }
+}
+
+function stopReading() {
+    window.speechSynthesis.cancel();
+    isPaused = false;
+}
+function playVoice() {
+    const text = document.body.innerText.slice(0, 800); 
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "id-ID";
+    utterance.rate = 0.95;
+
+    speechSynthesis.cancel(); 
+    speechSynthesis.speak(utterance);
+}
+</script>
 </body>
 
 </html>
+
