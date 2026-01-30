@@ -19,6 +19,17 @@
         </div>
     </header>
 
+ <div class="content content-page">
+        <div class="card" style="display: block;">
+
+        <div class="voice-control">
+            <button onclick="startReading()">🔊 Dengarkan</button>
+            <button onclick="pauseReading()">⏸️ Pause</button>
+            <button onclick="stopReading()">⏹️ Stop</button>
+        </div>
+
+        
+        <div id="contentAbad">
     <div class="content content-page">
         <div class="card" style="display: block;">
             <h2>Abad 8</h2>
@@ -35,12 +46,60 @@
             <p class="justify"> Dengan demikian, kondisi dunia Islam pada abad 8 sangat mendukung terjadinya kontak awal antara Islam dan Nusantara. Stabilitas politik di bawah Dinasti Umayyah dan Abbasiyah, kemajuan ekonomi melalui jaringan perdagangan internasional, serta perkembangan sosial dan budaya Islam menciptakan lingkungan yang kondusif bagi penyebaran Islam ke berbagai wilayah dunia, termasuk Asia Tenggara. Perkembangan Islam di Nusantara pada abad 8 belum bersifat menyeluruh, tetapi merupakan fase awal yang penting dalam proses panjang islamisasi. Kontak awal ini menjadi fondasi bagi perkembangan Islam pada abad-abad berikutnya, ketika Islam mulai berkembang lebih luas dan terorganisasi di Nusantara. Oleh karena itu, memahami kondisi dunia Islam pada abad 8sangat penting untuk melihat bagaimana Islam dapat hadir, dikenal, dan perlahan berkembang di wilayah Nusantara.</p>
          </div>
     </div>
-
+        </div>
     <div class="bottom-nav" id="bottomNav">
         <button class="bottom-nav-btn" onclick="location.href='sidkel4.html'">🏠 Kembali ke Beranda</button>
         <button class="bottom-nav-btn" onclick="scrollToTop()">⬆ Ke Atas</button>
     </div>
 
     <script src="main.js"></script>
+            <button onclick="playVoice()" class="voice-btn">
+🔊 Dengarkan Ringkasan
+</button>
+
+            <script>
+let speech;
+let isPaused = false;
+
+function startReading() {
+    stopReading();
+    const text = document.getElementById("contentAbad").innerText;
+
+    speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "id-ID";
+    speech.rate = 0.95;
+    speech.pitch = 1;
+
+    window.speechSynthesis.speak(speech);
+}
+
+function pauseReading() {
+    if (!window.speechSynthesis.speaking) return;
+
+    if (isPaused) {
+        window.speechSynthesis.resume();
+        isPaused = false;
+    } else {
+        window.speechSynthesis.pause();
+        isPaused = true;
+    }
+}
+
+function stopReading() {
+    window.speechSynthesis.cancel();
+    isPaused = false;
+}
+function playVoice() {
+    const text = document.body.innerText.slice(0, 800); 
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "id-ID";
+    utterance.rate = 0.95;
+
+    speechSynthesis.cancel(); 
+    speechSynthesis.speak(utterance);
+}
+</script>
 </body>
+
 </html>
